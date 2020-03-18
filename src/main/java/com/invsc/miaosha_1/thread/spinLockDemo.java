@@ -38,7 +38,6 @@ public class spinLockDemo {
 
         new Thread(() -> {
             lock.myLock();
-
             lock.myUnlock();
         }, "BBB").start();
     }
