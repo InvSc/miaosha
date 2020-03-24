@@ -2,6 +2,7 @@ package com.invsc.miaosha_1.thread;
 
 import lombok.Getter;
 
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -54,6 +55,7 @@ enum ThreadEnum {
         return null;
     }
 }
+// ReentrantLock解法
 class SharedResource {
     private int number = 1;
     private Lock lock = new ReentrantLock();
@@ -121,9 +123,57 @@ class SharedResource {
         }
     }
 }
+// Semaphore解法
+class Resource {
+    private Semaphore S1;
+    private Semaphore S2;
+    private Semaphore S3;
+    public Resource() {
+        this.S1 = new Semaphore(1);
+        this.S2 = new Semaphore(0);
+        this.S3 = new Semaphore(0);
+    }
+    public void print5() {
+        try {
+            S1.acquire();
+            for (int i = 1; i <= 5; i++) {
+                System.out.println(Thread.currentThread().getName() + "\t" + i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            S2.release();
+        }
+    }
+    public void print10() {
+        try {
+            S2.acquire();
+            for (int i = 1; i <= 10; i++) {
+                System.out.println(Thread.currentThread().getName() + "\t" + i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            S3.release();
+        }
+    }
+    public void print15() {
+        try {
+            S3.acquire();
+            for (int i = 1; i <= 15; i++) {
+                System.out.println(Thread.currentThread().getName() + "\t" + i);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            S1.release();
+        }
+    }
+}
 public class SynAndReentrantLockDemo {
     public static void main(String[] args) {
-        SharedResource data = new SharedResource();
+//        SharedResource data = new SharedResource();
+        Resource data = new Resource();
         new Thread(() -> {
             for (int i = 0; i < 10; i++) {
                 data.print5();
