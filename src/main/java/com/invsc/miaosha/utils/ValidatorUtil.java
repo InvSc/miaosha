@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ValidateUtil {
+public class ValidatorUtil {
     public static final Pattern mobile_pattern = Pattern.compile("1\\d{10}");
 
     public static boolean isMobile(String src) {
@@ -17,7 +17,7 @@ public class ValidateUtil {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(isMobile("18912341234"));
-    }
+//    public static void main(String[] args) {
+//        System.out.println(isMobile("18912341234"));
+//    }
 }

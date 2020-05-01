@@ -1,9 +1,10 @@
 package com.invsc.miaosha.redis;
 
-public class UserKey extends BasePreFix {
-    private UserKey(String prefix) {
-        super(prefix);
+public class MiaoshaUserKey extends BasePreFix {
+
+    private static int TOKEN_EXPIRE = 3600 * 24 * 2;
+    private MiaoshaUserKey(int expireSeconds, String prefix) {
+        super(expireSeconds, prefix);
     }
-    public static UserKey getById = new UserKey("ID"); // 为什么此处大小写失效
-    public static UserKey getByName = new UserKey("NAME");
+    public static MiaoshaUserKey token = new MiaoshaUserKey(TOKEN_EXPIRE, "tk");
 }
