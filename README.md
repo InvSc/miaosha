@@ -119,8 +119,52 @@ public String toLogin(Model model,
 1. 数据库设计
 
    商品表
+```mysql
+CREATE TABLE `goods`(
+`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '商品ID',
+`goods_name` varchar(16) DEFAULT NULL COMMENT '商品名称',
+`goods_title` varchar(64) DEFAULT NULL COMMENT '商品标题',
+`goods_img` varchar(64) DEFAULT NULL COMMENT'商品的图片',
+`goods_detail` longtext COMMENT '商品的详情介绍',
+`goods_price` decimal(10,2) DEFAULT '0.00' COMMENT '商品单价',
+`goods_stock` int(11) DEFAULT'0' COMMENT '商品库存，-1表示没有限制',
+PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+```
+```mysql
+INSERT INTO `goods`
+VALUES
+(1, 
+'iphoneX',
+'Apple iPhoneX（A1865）64GB 银色 移动联通电信4G手机',
+'img/iphonex.png',
+'Apple iPhoneX（A1865）64GB 银色 移动联通电信4G手机',
+8765.00,
+10000),
+(2,
+'华为Mate9',
+'华为Mate9 4G + 32G版 月光银 移动联通电信4G手机 双卡双待',
+'img/mate9.png',
+'华为Mate9 4G + 32G版 月光银 移动联通电信4G手机 双卡双待',
+3212,
+-1);
+```
 
    秒杀商品表
+```mysql
+CREATE TABLE `miaosha_goods`(
+`id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '秒杀的商品表',
+`goods_id` bigint(20) DEFAULT NULL COMMENT '商品ID',
+`miaosha_price` decimal(10,2) DEFAULT '0.00' COMMENT '秒杀价',
+`stock_count` int(11) DEFAULT'0' COMMENT '商品库存',
+`start_date` datetime default null comment '秒杀开始时间',
+`end_date` datetime default null comment '秒杀结束时间',
+PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+```
+```mysql
+INSERT into `miaosha_goods` values (1, )
+```
 
    订单表
 
