@@ -195,6 +195,7 @@ PRIMARY KEY(`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 ```
 
+注意： 实际生产过程中GoodsID字段很少会直接采用auto_increment,因为这样的话很容易被别人直接遍历，我们常用snowFlake算法
 2. 页面设计
    1. 商品列表页
    2. 商品详情页
