@@ -21,7 +21,7 @@ public interface GoodsDao {
 
 	@Select("SELECT g.*, mg.miaosha_price, mg.stock_count, mg.start_date, mg.end_date " +
 			"FROM miaosha_goods mg left join goods g " +
-			"ON mg.goods_id = g.id" +
+			"ON mg.goods_id = g.id " +
 			"WHERE g.id = #{goodsId}")
 	GoodsVo getGoodsVoByGoodsId(@Param("goodsId") long goodsId);
 }
