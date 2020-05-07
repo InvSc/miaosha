@@ -8,8 +8,8 @@ import java.util.Date;
 @Getter
 @Setter
 public class GoodsVo extends Goods {
-	private double miaoshaPrice;
-	private Integer stockCount;
-	private Date startDate;
-	private Date endDate;
+	private double     miaoshaPrice;
+	private Integer    stockCount;
+	private Date       startDate;
+	private Date       endDate;
 }
