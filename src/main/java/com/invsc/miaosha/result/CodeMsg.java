@@ -27,6 +27,9 @@ public class CodeMsg {
     // 商品模块 5003XX
     // 订单模块 5004XX
     // 秒杀模块 5005XX
+    public static final CodeMsg MIAOSHA_OVER   = new CodeMsg(500500, "秒杀完毕");
+    public static final CodeMsg MIAOSHA_REPEAT   = new CodeMsg(500501, "秒杀重复");
+
 
     public CodeMsg fillArgs(Object... args) {
         int code = this.code;
