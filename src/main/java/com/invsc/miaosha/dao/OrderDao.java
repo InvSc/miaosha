@@ -20,7 +20,7 @@ public interface OrderDao {
 
 	@Insert("INSERT INTO order_info(user_id, goods_id, goods_name, goods_count, goods_price, order_channel, status, create_date) " +
 			"VALUES(#{userId}, #{goodsId}, #{goodsName}, #{goodsCount}, #{goodsPrice}, #{orderChannel}, #{status}, #{createDate})")
-	@SelectKey(keyColumn = "id", keyProperty = "id", resultType = long.class, before = false, statement = "select last_insert_id()")
+	@SelectKey(keyColumn = "id", keyProperty = "id", resultType = long.class, before = false, statement = "SELECT LAST_INSERT_ID()")
 	long insertOrder(OrderInfo orderInfo);
 
 	@Insert("INSERT INTO miaosha_order(user_id, order_id, goods_id) VALUES(#{userId}, #{orderId}, #{goodsId})")
