@@ -32,11 +32,11 @@ public class OrderService {
 		orderInfo.setOrderChannel(1);
 		orderInfo.setStatus(0);
 		orderInfo.setUserId(user.getId());
-		long orderId = orderDao.insertOrder(orderInfo);
+		orderDao.insertOrder(orderInfo);
 
 		MiaoshaOrder miaoshaOrder = new MiaoshaOrder();
 		miaoshaOrder.setGoodsId(goods.getId());
-		miaoshaOrder.setGoodsId(orderId);
+		miaoshaOrder.setOrderId(orderInfo.getId()); // BUG FIX: insertOrder执行后id已被注入OrderInfo对象
 		miaoshaOrder.setUserId(user.getId());
 		orderDao.insertMiaoshaOrder(miaoshaOrder);
 
