@@ -1,8 +1,6 @@
 package com.invsc.miaosha.dao;
 
-import com.invsc.miaosha.domain.User;
 import com.invsc.miaosha.vo.GoodsVo;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +10,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface GoodsDao {
+public interface MiaoshaDao {
     // 进行miaosha_goods、goods的联表查询
     @Select("SELECT g.*, mg.miaosha_price, mg.stock_count, mg.start_date, mg.end_date " +
             "FROM miaosha_goods mg left join goods g " +

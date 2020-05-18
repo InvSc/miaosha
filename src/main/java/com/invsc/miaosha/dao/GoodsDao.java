@@ -1,11 +1,10 @@
 package com.invsc.miaosha.dao;
 
+import com.invsc.miaosha.domain.Goods;
+import com.invsc.miaosha.domain.MiaoshaGoods;
 import com.invsc.miaosha.domain.User;
 import com.invsc.miaosha.vo.GoodsVo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +23,9 @@ public interface GoodsDao {
 			"ON mg.goods_id = g.id " +
 			"WHERE g.id = #{goodsId}")
 	GoodsVo getGoodsVoByGoodsId(@Param("goodsId") long goodsId);
+
+	@Update("UPDATE miaosha_goods " +
+			"SET stock_count = stock_count - 1 " +
+			"WHERE goods_id = #{goodsId}")
+	void reduceStock(MiaoshaGoods g);
 }
